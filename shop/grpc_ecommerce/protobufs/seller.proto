@@ -1,5 +1,4 @@
 syntax = "proto3";
-
 package ecommerce;
 
 service Seller{
@@ -14,26 +13,53 @@ service Seller{
 }
 
 message SellerLoginRequest {
-
+    string email = 1;
+    string password = 2;
+    bytes profile= 3;
 }
 
-message SellerRegisterRequest{
-
+message SellerRegisterRequest{  
+    int32 id = 1;
+    string name = 2;
+    string username = 3;
+    string email = 4;
+    string password = 5;
 }
 
 message SellerAddProductsRequest{
-    
+    string name= 1;
+    int32 price= 2;
+    float discount= 3;
+    int32 stock= 4;
+    repeated string colors= 5;
+    string desc= 6;
+    string pub_date= 7;
+    int32 category_id= 8;
+    string category= 9;
+    int32 brand_id= 10;
+    bytes image_1= 11;
+    bytes image_2= 12;
+    bytes image_3= 13;
 }
 
 message  SellerUpdateProductRequest{
 
+    string name= 1;
+    int32 price= 2;
+    float discount= 3;
+    int32 stock= 4;
+    repeated string colors= 5;
+    string desc= 6;
+
 }
 
 message SellerDeleteProductRequest{
+    string name=1;
 
 }
 
 message SellerlogoutRequest{
+    string username=1;
 
 }
 
@@ -51,17 +77,19 @@ message SellerLoginResponse {
 
 
 message SellerAddProductsResponse {
-    string rating = 1;
+    string status = 1;
 }
 
 message SellerUpdateProductResponse{
+    string status=1;
 
 }
 
 message SellerDeleteProductResponse{
+    string status=1;
 
 }
 
 message SellerlogoutResponse{
-    
+    string status=1;
 }
