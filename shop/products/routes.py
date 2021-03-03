@@ -12,7 +12,7 @@ import grpc
 #GRPC params
 from ..grpc_ecommerce.protobufs.onlineshopping_pb2_grpc import BuyerActionsStub
 
-channel = grpc.insecure_channel("localhost:50051")
+channel = grpc.insecure_channel(os.environ.get("GRPC_SERVER_CONNECTION"))
 grpc_client = BuyerActionsStub(channel)
 
 def brands():

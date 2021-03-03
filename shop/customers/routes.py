@@ -25,7 +25,7 @@ from shop.grpc_ecommerce.protobufs.onlineshopping_pb2_grpc import BuyerActionsSt
 from flask import request, jsonify
 
 #GRPC params
-channel = grpc.insecure_channel("localhost:50051")
+channel = grpc.insecure_channel(os.environ.get("GRPC_SERVER_CONNECTION"))
 grpc_client = BuyerActionsStub(channel)
 
 buplishable_key ='pk_test_51IN5nDCVZ5Yf06wRG9BLSKuBUaUqXKWKxbQPjAtHcsYdZgY0NiTG0aXIf25Ll29ItyhvnxjBa1FSUJPCo107MmCD00nkqBkcID'

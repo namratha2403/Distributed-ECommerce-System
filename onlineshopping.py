@@ -7,7 +7,6 @@ from flask_login import login_required, current_user, logout_user, login_user
 from sqlalchemy import create_engine
 import grpc
 import sqlite3
-
 from shop import bcrypt
 from shop.grpc_ecommerce.protobufs import onlineshopping_pb2_grpc
 from shop.grpc_ecommerce.protobufs.onlineshopping_pb2 import (
@@ -43,24 +42,6 @@ class BuyerActionService(onlineshopping_pb2_grpc.BuyerActionsServicer):
             print(e)
             AccountCreationResponse(status="failure")
         return AccountCreationResponse(status="success")
-
-    # def getAccounts(self, request, context):
-    #     try:
-    #         list_users = []
-    #         query = {'username': { '$exists' : True}}
-    #         entries= buyers.find(query)
-    #         for entry in entries:
-    #             name = AccountCreationRequest\
-    #                 (buyer_id=entry['userId'],
-    #                  buyer_name=entry['name'],
-    #                  buyer_username=entry['username'],
-    #                  buyer_password=entry['password'],
-    #                  items_purchased=entry['noOfItemsPurchased'])
-    #             list_users.append(name)
-    #             print(entry)
-    #     except Exception as e:
-    #         print(e)
-    #     return Accounts(accounts=list_users)
 
     def login(self, request, context):
         try:
@@ -99,30 +80,6 @@ class BuyerActionService(onlineshopping_pb2_grpc.BuyerActionsServicer):
                 keywords = keywords
             ))
         return SearchProductResponse(products=json_docs)
-        # json_docs = []
-        # try:
-        #     items = products.find(query)
-        #     if(items.count() == 0):
-        #         return SearchProductResponse(products=json_docs)
-        #     else:
-        #         for item in items:
-        #             keywords = []
-        #             for it in item['keywords']:
-        #                 keywords.append(Keyword(words=it))
-        #             json_docs.append(ProductDetails(
-        #                 productId = item['productId'],
-        #                 product_name = item['product_name'],
-        #                 price = item['price'],
-        #                 quantity = item['quantity'],
-        #                 seller_id = item['seller_id'],
-        #                 category = item['category'],
-        #                 category_name = item['category_name'],
-        #                 keywords = keywords
-        #             ))
-        # except Exception as e:
-        #     print(e)
-        # return SearchProductResponse(products=json_docs)
-
     def getProducts(self, request, context):
         json_docs = []
         try:
